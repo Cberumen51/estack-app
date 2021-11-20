@@ -13,7 +13,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import './App.css';
 
 function App() {
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false); // Auth Modal
 	const [apiResponse, setApiResponse] = useState(null);
 	const [loggedIn, setLoggedIn] = useState('Log in');
 	const [user, setUser] = useState('LogIn');
@@ -28,13 +28,14 @@ function App() {
 
 	//Axios.defaults.withCredentials = true;
 
-	useEffect(() => {
-		(async () => {
-			const response = await fetch('http://localhost:9000/testAPI');
-			const text = await response.text();
-			setApiResponse(text);
-		})();
-	}, []);
+	// GET request to backend server -> apiResponse
+	// useEffect(() => {
+	// 	(async () => {
+	// 		const response = await fetch('http://localhost:9000/testAPI');
+	// 		const text = await response.text();
+	// 		setApiResponse(text);
+	// 	})();
+	// }, []);
 
 	useEffect(() => {
 		Axios.get('http://localhost:3001/users/login').then((response) => {
@@ -57,10 +58,14 @@ function App() {
 					loggedIn={loggedIn}
 					logOut={logOut}
 				/>
+
+				{/* Link to different sub-website */}
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/about" exact component={About} />
 					<Route path="/workwithus" exact component={WorkWithUs} />
+
+					{/* Details for properties */}
 					<Route path="/property" exact component={Property} />
 
 					<Route
@@ -69,8 +74,11 @@ function App() {
 						component={PropertyUpload}
 					/>
 
+					{/* Owner Dashboard */}
 					<Route path="/dashboard" exact component={Dashboard} />
 				</Switch>
+
+				{/* LogIn & Register panel */}
 				<AuthModal
 					isModalOpen={isModalOpen}
 					onModalToggle={setIsModalOpen}

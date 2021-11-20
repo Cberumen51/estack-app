@@ -24,12 +24,15 @@ const Navbar = ({ onModalToggle, text, loggedIn, logOut }) => {
 						<NavLink buttonStyle="btn--dropdown" to="/about">
 							About Us
 						</NavLink>
+
 						{!loggedIn && (
 							<NavButton onModalToggle={onModalToggle}>
 								{text}
 							</NavButton>
 						)}
+
 						{loggedIn && (
+							// DropDown menu for user icon
 							<Dropdown>
 								<Dropdown.Toggle
 									variant="success"
@@ -60,7 +63,6 @@ const Navbar = ({ onModalToggle, text, loggedIn, logOut }) => {
 								</Dropdown.Menu>
 							</Dropdown>
 						)}
-						{/* <NavButton onModalToggle={onModalToggle}>Register</NavButton> */}
 					</ul>
 				</Container>
 			</nav>
